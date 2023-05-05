@@ -1,10 +1,11 @@
 const mysql = require('mysql2')
+require('dotenv').config();
 
 const pool = mysql.createPool({
-    host:'localhost',
-    user:'root',
-    database: 'user_management',
-    password: 'sqlrootpassword'
+    host:     process.env.DB_HOST,
+    user:     process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD
 })
 
 
@@ -167,7 +168,7 @@ exports.delete = (req, res) =>{
         if(err) throw err;
         console.log('connected as ID ' + connection.threadId);
 
-        connection.query('update user set status = ?  where ID = ?', ['removed', req.params.id], (err, rows) => {
+        connection.query('update user set status = ?,  where ID = ?', ['removed', req.params.id], (err, rows) => {
             connection.release()
 
             if(!err){
