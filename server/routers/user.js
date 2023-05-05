@@ -11,8 +11,8 @@ router.post('/adduser', userController.create)
 router.get('/edituser/:id', userController.edit)
 
 router.post('/edituser/:id', userController.updateuser)
-router.get('/:id', userController.delete)
 router.get('/viewuser/:id', userController.watch)
+router.get('/:id', userController.delete)
 
 
 module.exports = router

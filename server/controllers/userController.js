@@ -113,7 +113,7 @@ exports.updateuser = (req, res) =>{
         if(err) throw err;
         console.log('connected as ID ' + connection.threadId);
 
-        connection.query('update user set first_name = ?, last_name = ? email = ?, phone = ? comments =? where ID = ?', [first_name, last_name, email, phone, comments, req.params.id], (err, rows) => {
+        connection.query('update user set first_name = ? last_name = ? email = ? phone = ? comments =? where ID = ?', [first_name, last_name, email, phone, comments, req.params.id], (err, rows) => {
             connection.release()
 
         if(!err){
@@ -168,7 +168,7 @@ exports.delete = (req, res) =>{
         if(err) throw err;
         console.log('connected as ID ' + connection.threadId);
 
-        connection.query('update user set status = ?,  where ID = ?', ['removed', req.params.id], (err, rows) => {
+        connection.query('update user set status = ?  where ID = ?', ['removed', req.params.id], (err, rows) => {
             connection.release()
 
             if(!err){
